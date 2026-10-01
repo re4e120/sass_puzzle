@@ -1,0 +1,6 @@
+@mixin colorArea($color, $height, $width) { // 引数を$colorにする
+  margin: 0 auto;
+  background-color: $color;
+  height: $height;
+  width: $width;
+}
