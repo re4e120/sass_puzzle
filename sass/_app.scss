@@ -1,0 +1,80 @@
+@use 'variable';
+@use 'mixin';
+
+$boxesColor: variable.$classNames ;
+$boxesButtonColor: variable.$buttonColor;
+
+.header{
+  @include mixin.colorArea(variable.$navy, 100px, 400px);
+  display: flex;
+
+  .inner{
+    display: flex;
+    flex-direction: row;
+    @include mixin.colorArea(variable.$white, 60px, 160px);
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 0;
+
+    & > div{
+      height: 40px;
+      width: 40px;
+      margin: 10px 0 0 10px;
+      @each $boxColor in $boxesColor{
+        $index_key: index($boxesColor, $boxColor);
+        &.box_#{$boxColor}{
+          background-color: nth($boxesButtonColor, $index_key);
+        }
+      }
+    }
+  }
+}
+
+
+
+.container{
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  width: 400px;
+
+  .sidebar {
+    @include mixin.colorArea(variable.$green, 250px, 150px);
+    justify-content: left;
+  }
+
+  .main {
+    @include mixin.colorArea(variable.$red, 250px, 250px);
+    justify-content: right;
+
+    .boxes {
+      margin-left: 40px;
+      margin-top: 40px;
+      display: block;
+
+      .box {
+        @include mixin.colorArea(variable.$white, 40px, 140px);
+        margin-bottom: 10px;
+        margin-left: 0;
+        padding: 5px;
+
+        &>div {
+          height: 40px;
+          width: 140px;
+
+          @each $boxColor in $boxesColor {
+            $index_key: index($boxesColor, $boxColor);
+
+            &.box_#{$boxColor} {
+              background-color: nth($boxesButtonColor, $index_key);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer{
+  @include mixin.colorArea(variable.$brown, 100px, 400px);
+}
